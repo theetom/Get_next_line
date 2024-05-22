@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: etom <etom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:42:47 by toferrei          #+#    #+#             */
-/*   Updated: 2024/05/20 17:18:01 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/05/22 11:30:02 by etom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ int ft_strlen(char *s)
 	int i;
 
 	i = 0;
+	
 	if (!s)
 		return (0);
 	while (s[i] && s[i] != '\n')
 		i++;
+	// printf("strlen [%s] :%d\n", s, i);
 	if (s[i] == '\n')
-		return (++i);
+		return (i); // ++i
+	// printf("strlen [%s] :%d\n", s, i);
 	return (i);
 }
 
@@ -33,9 +36,10 @@ void ft_clean_buf(char *buf)
 	int j;
 	
 	i = ft_strlen(buf);
+	// printf("strlen :%d\n", i);
 	j = 0;
 	l = 0;
-	printf("\n buffer : %s \n", buf);
+	// printf("2nd before buffer : %s \n\n", buf);
 	if (buf[i] == '\0')
 	{
 		buf[0] = '\0';
@@ -47,7 +51,7 @@ void ft_clean_buf(char *buf)
 	while (i < l)
 		buf[j++] = buf[i++];
 	buf[j]='\0';
-	printf("%s buffer",buf);
+	// printf("2nd after buffer : %s\n\n",buf);
 }
 
 
@@ -70,11 +74,17 @@ char *ft_strjoin(char *s1, char *s2)
 		i++;
 		}
 	}
-	while (i < soma)
+	// printf("s2:%s\n", s2);
+	while (i < soma + 1)
 		s_res[i++] = s2[j++];
+	// printf("s2:%s\n", s2);
+	// printf("sres :%s\n", s_res);
 	s_res[i] = '\0';
 	if (s1)
 		free (s1);
+		
+	// printf("s2 :%s\n", s2);
 	ft_clean_buf(s2);
+	// printf("s2 :%s\n", s2);
 	return (s_res);
 }

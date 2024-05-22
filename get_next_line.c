@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: etom <etom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:42:45 by toferrei          #+#    #+#             */
-/*   Updated: 2024/05/20 17:12:40 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/05/22 11:30:09 by etom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ char *get_next_line(int fd)
 	int i;
 	int j;
 	
-	printf("%s",buf);
-	printf("%i", fd);
+	// printf("1st buf :%s\n",buf);
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 		return(NULL);
 	result = NULL;
@@ -29,7 +28,9 @@ char *get_next_line(int fd)
 	{
 		if(!*buf)
 		{
+			
 			i = read(fd, buf, BUFFER_SIZE);
+				// printf("1st buf :%s\nread:%d\n",buf, i);
 			if(i == -1)
 			{
 				ft_clean_buf(buf);
@@ -38,7 +39,9 @@ char *get_next_line(int fd)
 			if(i == 0)
 				return(result);
 			buf[i] = '\0';
+			// printf("b result :%s\n", result);
 			result = ft_strjoin(result, buf);
+			// printf("a result :%s\n", result);
 		}
 		else
 			result = ft_strjoin(result, buf);
@@ -48,15 +51,15 @@ char *get_next_line(int fd)
 	return(result);
 }
 
-int main()
-{
-	int fd = open("file.txt", O_RDONLY);
-	char *line = get_next_line(fd);
-	while (line)
-	{
-		printf("%s",line);
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-}
+// int main()
+// {
+// 	int fd = open("file.txt", O_RDONLY);
+// 	char *line = get_next_line(fd);
+// 	while (line)
+// 	{
+// 		printf("output :%s\n",line);
+// 		free(line);
+// 		line = get_next_line(fd);
+// 	}
+// 	free(line);
+// }
