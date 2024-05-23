@@ -6,18 +6,17 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:42:47 by toferrei          #+#    #+#             */
-/*   Updated: 2024/05/23 15:49:46 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:56:06 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	
 	if (!s)
 		return (0);
 	while (s[i] && s[i] != '\n')
@@ -27,26 +26,24 @@ int ft_strlen(char *s)
 	return (i);
 }
 
-void ft_clean_buf(char *buf)
+void	ft_clean_buf(char *buf)
 {
-	int i;
-	int l;
-	int j;
-	
-	i = ft_strlen(buf) - 1; //- 1;
+	int	i;
+	int	l;
+	int	j;
+
+	i = ft_strlen(buf) - 1;
 	j = 0;
 	l = 0;
-
 	while (buf[l])
 		l++;
 	buf[i++] = '\0';
 	while (i < l)
 		buf[j++] = buf[i++];
-	buf[j]='\0';
+	buf[j] = '\0';
 }
 
-
-char *ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*s_res;
 	int		i;
@@ -58,7 +55,7 @@ char *ft_strjoin(char *s1, char *s2)
 	if (!s_res)
 		return (NULL);
 	if (s1)
-	{	
+	{
 		while (s1[i])
 		{
 			s_res[i] = s1[i];
@@ -74,12 +71,12 @@ char *ft_strjoin(char *s1, char *s2)
 	return (s_res);
 }
 
-int chrnline(char *s)
+int	chrnline(char *s)
 {
-	while(*s != '\0' && *s != '\n')
+	while (*s != '\0' && *s != '\n')
 		s++;
 	if (*s == '\n')
-		return(1);
+		return (1);
 	else
 		return (0);
 }
