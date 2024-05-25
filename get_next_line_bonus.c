@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: etom <etom@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:59:51 by toferrei          #+#    #+#             */
-/*   Updated: 2024/05/23 16:08:44 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/05/25 11:07:58 by etom             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*get_next_line(int fd)
 {
 	static char	buf[BUFFER_SIZE + 1];
-	char		*result[fd];
+	char		*result[3000];
 	int			i;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
@@ -38,13 +38,21 @@ char	*get_next_line(int fd)
 	return (result[fd]);
 }
 
-/* int main()
+ int main()
 {
 	int fd = open("file.txt", O_RDONLY);
 	char *line;
+	printf("fd :%d\n", fd);
 	while ((line = get_next_line(fd)))
 	{
 		printf("output :%s\n",line);
 		free(line);
 	}
-} */
+	fd = open("file2.txt", O_RDONLY);
+	printf("fd :%d\n", fd);
+	while ((line = get_next_line(fd)))
+	{
+		printf("output :%s\n",line);
+		free(line);
+	}
+}
