@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:59:51 by toferrei          #+#    #+#             */
-/*   Updated: 2024/05/29 12:34:11 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:06:05 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*get_next_line(int fd)
 {
 	static char	buf[BUFFER_SIZE + 1];
-	char		*result[3000];
+	char		*result[FOPEN_MAX];
 	int			i;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
@@ -40,9 +40,9 @@ char	*get_next_line(int fd)
 	return (result[fd]);
 }
 
- int main()
+/*  int main()
 {
-	int fd = open("file.txt", O_RDONLY);
+	int fd = open("file1.txt", O_RDONLY);
 	char *line;
 	printf("fd :%d\n", fd);
 	while ((line = get_next_line(fd)))
@@ -57,4 +57,4 @@ char	*get_next_line(int fd)
 		printf("output :%s\n",line);
 		free(line);
 	}
-}
+}*/
