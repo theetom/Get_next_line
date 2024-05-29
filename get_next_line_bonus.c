@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etom <etom@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:59:51 by toferrei          #+#    #+#             */
-/*   Updated: 2024/05/25 11:07:58 by etom             ###   ########.fr       */
+/*   Updated: 2024/05/29 12:34:11 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ char	*get_next_line(int fd)
 		if (!*buf)
 		{
 			i = read(fd, buf, BUFFER_SIZE);
-			if (i == -1 || i == 0)
+			if (i == 0)
 				return (result[fd]);
+			if (i == -1)
+				return (NULL);
 			buf[i] = '\0';
 		}
 		result[fd] = ft_strjoin(result[fd], buf);
