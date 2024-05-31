@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:42:45 by toferrei          #+#    #+#             */
-/*   Updated: 2024/05/29 12:34:25 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:12:51 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*get_next_line(int fd)
 		{
 			i = read(fd, buf, BUFFER_SIZE);
 			if (i == 0)
-				return (result[fd]);
+				return (result);
 			if (i == -1)
 				return (NULL);
 			buf[i] = '\0';
@@ -42,7 +42,7 @@ char	*get_next_line(int fd)
 
 /* int main()
 {
-	int fd = open("file.txt", O_RDONLY);
+	int fd = open("file.txt", O_RDONLY | O_CREAT);
 	char *line;
 	while ((line = get_next_line(fd)))
 	{

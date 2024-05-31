@@ -6,11 +6,11 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:59:51 by toferrei          #+#    #+#             */
-/*   Updated: 2024/05/29 13:06:05 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:00:20 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
