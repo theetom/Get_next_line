@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 15:59:51 by toferrei          #+#    #+#             */
-/*   Updated: 2024/05/29 14:00:20 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:39:20 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,54 @@
 
 char	*get_next_line(int fd)
 {
-	static char	buf[BUFFER_SIZE + 1];
-	char		*result[FOPEN_MAX];
+	static char	buf[FOPEN_MAX][BUFFER_SIZE + 1];
+	char		*result;
 	int			i;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 		return (NULL);
-	result[fd] = NULL;
+	result = NULL;
 	i = 1;
 	while (i > 0)
 	{
-		if (!*buf)
+		if (!*buf[fd])
 		{
-			i = read(fd, buf, BUFFER_SIZE);
+			i = read(fd, buf[fd], BUFFER_SIZE);
 			if (i == 0)
-				return (result[fd]);
+				return (result);
 			if (i == -1)
 				return (NULL);
-			buf[i] = '\0';
+			buf[fd][i] = '\0';
 		}
-		result[fd] = ft_strjoin(result[fd], buf);
-		if (chrnline(result[fd]))
+		result = ft_strjoin(result, buf[fd]);
+		if (chrnline(result))
 			break ;
 	}
-	return (result[fd]);
+	return (result);
 }
 
-/*  int main()
+int main()
 {
 	int fd = open("file1.txt", O_RDONLY);
+	int fd2 = open("file2.txt", O_RDONLY);
 	char *line;
-	printf("fd :%d\n", fd);
-	while ((line = get_next_line(fd)))
+	char *line2;
+	// printf("fd :%d\n", fd);
+	while ((line = get_next_line(fd)) && (line2= get_next_line(fd2)))
 	{
 		printf("output :%s\n",line);
 		free(line);
 	}
-	fd = open("file2.txt", O_RDONLY);
-	printf("fd :%d\n", fd);
-	while ((line = get_next_line(fd)))
+	while ((line2= get_next_line(fd2)))
 	{
-		printf("output :%s\n",line);
-		free(line);
+		printf("output2 :%s\n",line2);
+		free(line2);
 	}
-}*/
+	// fd = open("file2.txt", O_RDONLY);
+	// printf("fd :%d\n", fd);
+	// while ((line = get_next_line(fd)))
+	// {
+	// 	printf("output :%s\n",line);
+	// 	free(line);
+	// }
+}
